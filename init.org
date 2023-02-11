@@ -74,6 +74,7 @@ Se definen opciones para trabajar mejor con parentesis
 
 #+begin_src emacs-lisp
   (show-paren-mode 1)
+  (electric-pair-mode 1)
 #+end_src
 
 Se define la indentación predeterminada a 2 espacios

@@ -25,6 +25,7 @@
 (doom-modeline-mode 1)
 
 (show-paren-mode 1)
+(electric-pair-mode 1)
 
 (setq tab-stop-list '(2))
 
