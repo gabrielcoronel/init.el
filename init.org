@@ -1,0 +1,253 @@
+#+AUTHOR: Gabriel Coronel
+#+TITLE: Mi configuración de Emacs
+#+LANGUAGE: es
+
+#+AUTO_TANGLE: t
+#+PROPERTY: header-args :tangle "init.el"
+
+* Paquetes
+1. Se añade a /melpa/ a la lista de repositorios.
+2. Se inicializan todos los paquetes instalados.
+3. Se actualizan los repositorios asíncronamente.
+
+#+begin_src emacs-lisp
+  (require 'package)
+
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+  (package-initialize)
+  (package-refresh-contents t)
+#+end_src
+
+
+* Archivos de respaldo y auto-guardado
+Los archivos de auto-guardado de guardan en /saves/ y los
+de respaldo en la /backups/.
+
+#+begin_src emacs-lisp
+  (setq auto-save-file-name-transforms '((".*" "~/.config/emacs/saves/" t)))
+  (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
+#+end_src
+
+
+* Interfaz de usuario
+Se eliminan aspectos visuales innecesarios
+
+#+begin_src emacs-lisp
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (fringe-mode -1)
+
+  (setq inhibit-startup-screen t)
+#+end_src
+
+Se añaden números de línea relativos a la posición del cursor
+
+#+begin_src emacs-lisp
+  (setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode 1)
+#+end_src
+
+Se aumenta el tamaño de la fuente
+
+#+begin_src emacs-lisp
+  (set-face-attribute 'default nil :height 130)
+#+end_src
+
+Se cambia el tema predeterminado
+
+#+begin_src emacs-lisp
+  (load-theme 'doom-gruvbox t)
+#+end_src
+
+Se usa una barra de información alternativa
+
+#+begin_src emacs-lisp
+  (require 'doom-modeline)
+  (doom-modeline-mode 1)
+#+end_src
+
+
+
+* Edición de texto
+Se definen opciones para trabajar mejor con parentesis
+
+#+begin_src emacs-lisp
+  (show-paren-mode 1)
+#+end_src
+
+Se define la indentación predeterminada a 2 espacios
+
+#+begin_src emacs-lisp
+  (setq tab-stop-list '(2))
+#+end_src
+
+Se activa /auto-fill-mode/ para cuando se edite texto
+
+#+begin_src emacs-lisp
+  (add-hook 'text-mode-hook #'auto-fill-mode)
+#+end_src
+
+** Evil (Simulación de Vim en Emacs)
+# Es muy probablo que deje de usar Evil en un futuro
+
+Se definen opciones para mejorar la simulación de Vim
+
+#+begin_src emacs-lisp
+  (setq evil-want-C-u-scroll t)
+  (setq evil-insert-state-cursor 'bar)
+  (setq evil-undo-system 'undo-redo)
+  (setq evil-kill-on-visual-paste nil)
+  (setq evil-want-keybinding nil)
+#+end_src
+
+Se activa Evil en todos los modos que tengan soporte
+
+#+begin_src emacs-lisp
+  (require 'evil)
+  (evil-mode 1)
+#+end_src
+
+Se añade soporte para más modos
+
+#+begin_src emacs-lisp
+  (require 'evil-collection)
+  (evil-collection-init)
+#+end_src
+
+Se añaden atajos de teclado convenientes
+
+#+begin_src emacs-lisp
+  (evil-set-leader 'motion (kbd "<SPC>"))
+
+  (evil-global-set-key 'normal (kbd "gc") #'comment-line)
+#+end_src
+
+Se activa /evil-surround/ para reemplazar a /Electric Pair Mode/
+#+begin_src emacs-lisp
+  (global-evil-surround-mode 1)
+#+end_src
+
+*** Evil Org
+#+begin_src emacs-lisp
+  (require 'evil-org)
+
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
+#+end_src
+
+
+* Org
+Se activa /auto-tangling/ (guardar el código fuente al guardar el archivo)
+
+#+begin_src emacs-lisp
+  (require 'org-auto-tangle)
+
+  (add-hook 'org-mode-hook 'org-auto-tangle-mode)
+#+end_src
+
+Se configuran aspectos visuales
+
+#+begin_src emacs-lisp
+  (setq org-startup-indented t)
+
+  (require 'org-bullets)
+  (add-hook 'org-mode-hook #'org-bullets-mode)
+#+end_src
+
+Se activan opciones para trabajar mejor con $\LaTeX$
+
+#+begin_src emacs-lisp
+  (setq org-highlight-latex-and-related '(latex script entities))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
+  (setq org-startup-with-latex-preview t)
+
+  (add-hook 'org-mode-hook 'org-fragtog-mode)
+#+end_src
+
+
+* Programación
+** Tree-Sitter
+
+Se habilita el coloreado de sintaxis de Tree-Sitter
+en todos los modos en los que esté disponible
+
+#+begin_src emacs-lisp
+  (global-tree-sitter-mode 1)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+#+end_src
+
+
+** LSP
+Se /eglot/ como cliente *LSP*. Se activa en todos los modes de programación.
+
+#+begin_src emacs-lisp
+  (add-hook 'prog-mode-hook 'eglot-ensure)
+#+end_src
+
+Se activa /yasnippet/ para tener snippets
+
+#+begin_src emacs-lisp
+  (yas-global-mode 1)
+#+end_src
+
+Se activa /company/ para tener auto-completado
+
+#+begin_src emacs-lisp
+  (setq company-minimum-prefix-length 1)
+
+  (global-company-mode 1)
+
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (add-to-list 'company-backends
+                           '(company-capf :with company-yasnippet))))
+#+end_src
+
+Se definen atajos de teclado para acceder a las funcionalidades de
+/eglot/
+
+#+begin_src emacs-lisp
+  (evil-define-key 'normal eglot-mode-map (kbd "gd") #'xref-find-definitions)
+  (evil-define-key 'normal eglot-mode-map (kbd "gr") #'xref-find-references)
+  (evil-define-key 'normal eglot-mode-map (kbd "C-c n") #'eglot-rename)
+  (evil-define-key 'motion eglot-mode-map (kbd "C-c a") #'eglot-code-actions)
+  (evil-define-key 'motion eglot-mode-map (kbd "C-c b") #'eglot-format-buffer)
+  (evil-define-key 'motion eglot-mode-map (kbd "C-c h") #'display-local-help)
+  (evil-define-key 'normal eglot-mode-map (kbd "C-c [") #'flymake-goto-next-error)
+  (evil-define-key 'normal eglot-mode-map (kbd "C-c ]") #'flymake-goto-prev-error)
+#+end_src
+
+
+* Ivy, Swiper y Counsel
+# Hay que probar Vertico
+
+Se activan opciones generales
+
+#+begin_src emacs-lisp
+  (setq ivy-wrap t)
+  (setq ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
+  (setq ivy-initial-inputs-alist '((t . "")))
+#+end_src
+
+Se usa /Ivy/ cuando se pueda
+
+#+begin_src emacs-lisp
+  (counsel-mode 1)
+#+end_src
+
+Se definen atajos de teclado para mejorar la integración con Evil en
+los buffers de /Ivy/
+
+#+begin_src emacs-lisp
+  (define-key ivy-minibuffer-map (kbd "C-u") #'ivy-scroll-down-command)
+  (define-key ivy-minibuffer-map (kbd "C-d") #'ivy-scroll-up-command)
+  (define-key ivy-minibuffer-map (kbd "C-i") #'ivy-insert-current)
+  (define-key ivy-minibuffer-map (kbd "C-<return>") #'ivy-call)
+#+end_src
+
+Se usa /Swiper/ para hacer búsquedas en lugar de /I-Search/
+
+#+begin_src emacs-lisp
+  (evil-global-set-key 'motion (kbd "/") #'swiper)
+#+end_src
