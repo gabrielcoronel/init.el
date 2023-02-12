@@ -88,12 +88,12 @@
 
 (evil-define-key 'normal eglot-mode-map (kbd "gd") #'xref-find-definitions)
 (evil-define-key 'normal eglot-mode-map (kbd "gr") #'xref-find-references)
-(evil-define-key 'normal eglot-mode-map (kbd "C-c n") #'eglot-rename)
-(evil-define-key 'motion eglot-mode-map (kbd "C-c a") #'eglot-code-actions)
-(evil-define-key 'motion eglot-mode-map (kbd "C-c b") #'eglot-format-buffer)
-(evil-define-key 'motion eglot-mode-map (kbd "C-c h") #'display-local-help)
-(evil-define-key 'normal eglot-mode-map (kbd "C-c [") #'flymake-goto-next-error)
-(evil-define-key 'normal eglot-mode-map (kbd "C-c ]") #'flymake-goto-prev-error)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>n") #'eglot-rename)
+(evil-define-key 'motion eglot-mode-map (kbd "<leader>a") #'eglot-code-actions)
+(evil-define-key 'motion eglot-mode-map (kbd "<leader>b") #'eglot-format-buffer)
+(evil-define-key 'motion eglot-mode-map (kbd "<leader>h") #'display-local-help)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>[") #'flymake-goto-next-error)
+(evil-define-key 'normal eglot-mode-map (kbd "<leader>]") #'flymake-goto-prev-error)
 
 (setq ivy-wrap t)
 (setq ivy-re-builders-alist '((t . ivy--regex-ignore-order)))
