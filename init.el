@@ -62,6 +62,8 @@
 
 (setq org-startup-indented t)
 (setq org-startup-folded t)
+(setq org-startup-with-inline-images t)
+(setq org-image-actual-width nil)
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook #'org-bullets-mode)
