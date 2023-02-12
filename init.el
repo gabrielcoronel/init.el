@@ -61,11 +61,10 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 
 (setq org-startup-indented t)
+(setq org-startup-folded t)
 
 (require 'org-bullets)
 (add-hook 'org-mode-hook #'org-bullets-mode)
-
-(setq org-startup-folded t)
 
 (setq org-highlight-latex-and-related '(latex script entities))
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.8))

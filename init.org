@@ -157,15 +157,10 @@ Se configuran aspectos visuales
 
 #+begin_src emacs-lisp
   (setq org-startup-indented t)
+  (setq org-startup-folded t)
 
   (require 'org-bullets)
   (add-hook 'org-mode-hook #'org-bullets-mode)
-#+end_src
-
-Se activan opciones generales
-
-#+begin_src emacs-lisp
-  (setq org-startup-folded t)
 #+end_src
 
 Se activan opciones para trabajar mejor con $\LaTeX$
