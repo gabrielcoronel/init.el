@@ -64,6 +64,15 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook #'org-bullets-mode)
 
+(setq org-agenda-files '("~/org/agenda/agenda.org"))
+(setq org-todo-keywords
+      '((sequence "PENDIENTE(p)" "EN ESPERA(e)" "|" "HECHO(h)" "CANCELADO(c)" "FALLADO(f)")))
+(setq org-tag-alist
+      '(("acción" . ?a)
+        ("sesión" . ?s)
+        ("expotec" . ?x)
+        ("extracurricular" . ?e)))
+
 (setq org-highlight-latex-and-related '(latex script entities))
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
 (setq org-startup-with-latex-preview t)

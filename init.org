@@ -159,6 +159,23 @@ Se configuran aspectos visuales
   (add-hook 'org-mode-hook #'org-bullets-mode)
 #+end_src
 
+Se configura la agenda de Org
++ *acción*: Acciones breves y mecánicas
++ *sesión*: Sesiones largas que requieren concentración
++ *expotec*: Tareas relacionadas a Expotec
++ *extracurricular*: Asuntos no relacionados al colegio
+
+#+begin_src emacs-lisp
+  (setq org-agenda-files '("~/org/agenda/agenda.org"))
+  (setq org-todo-keywords
+        '((sequence "PENDIENTE(p)" "EN ESPERA(e)" "|" "HECHO(h)" "CANCELADO(c)" "FALLADO(f)")))
+  (setq org-tag-alist
+        '(("acción" . ?a)
+          ("sesión" . ?s)
+          ("expotec" . ?x)
+          ("extracurricular" . ?e)))
+#+end_src
+
 Se activan opciones para trabajar mejor con $\LaTeX$
 
 #+begin_src emacs-lisp
