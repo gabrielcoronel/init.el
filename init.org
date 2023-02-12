@@ -130,14 +130,6 @@ Se activa /evil-surround/ para reemplazar a /Electric Pair Mode/
   (global-evil-surround-mode 1)
 #+end_src
 
-*** Evil Org
-#+begin_src emacs-lisp
-  (require 'evil-org)
-
-  (add-hook 'org-mode-hook 'evil-org-mode)
-  (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-#+end_src
-
 
 * Org
 Se activa /auto-tangling/ (guardar el código fuente al guardar el archivo)
@@ -175,6 +167,14 @@ Se activan opciones para trabajar mejor con $\LaTeX$
   (setq org-startup-with-latex-preview t)
 
   (add-hook 'org-mode-hook 'org-fragtog-mode)
+#+end_src
+
+** Evil Org
+#+begin_src emacs-lisp
+  (require 'evil-org)
+
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
 #+end_src
 
 

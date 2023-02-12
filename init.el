@@ -49,11 +49,6 @@
 
 (global-evil-surround-mode 1)
 
-(require 'evil-org)
-
-(add-hook 'org-mode-hook 'evil-org-mode)
-(evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-
 (require 'org-auto-tangle)
 
 (add-hook 'org-mode-hook 'org-auto-tangle-mode)
@@ -74,6 +69,11 @@
 (setq org-startup-with-latex-preview t)
 
 (add-hook 'org-mode-hook 'org-fragtog-mode)
+
+(require 'evil-org)
+
+(add-hook 'org-mode-hook 'evil-org-mode)
+(evil-org-set-key-theme '(navigation insert textobjects additional calendar))
 
 (global-tree-sitter-mode 1)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
