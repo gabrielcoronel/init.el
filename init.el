@@ -4,7 +4,6 @@
 (package-initialize)
 (package-refresh-contents t)
 
-(setq auto-save-file-name-transforms '((".*" "~/.config/emacs/saves/" t)))
 (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
 
 (tool-bar-mode -1)

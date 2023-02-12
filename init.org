@@ -24,7 +24,6 @@ Los archivos de auto-guardado de guardan en /saves/ y los
 de respaldo en la /backups/.
 
 #+begin_src emacs-lisp
-  (setq auto-save-file-name-transforms '((".*" "~/.config/emacs/saves/" t)))
   (setq backup-directory-alist '(("." . "~/.config/emacs/backups/")))
 #+end_src
 
