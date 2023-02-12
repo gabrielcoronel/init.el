@@ -146,6 +146,13 @@ Se activa /auto-tangling/ (guardar el código fuente al guardar el archivo)
   (add-hook 'org-mode-hook 'org-auto-tangle-mode)
 #+end_src
 
+Se definen atajos de teclado para acceder a comandos /importantes/
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-c a") #'org-agenda)
+  (global-set-key (kbd "C-c l") #'org-store-link)
+#+end_src
+
 Se configuran aspectos visuales
 
 #+begin_src emacs-lisp
