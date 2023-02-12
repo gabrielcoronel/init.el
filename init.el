@@ -23,6 +23,9 @@
 (require 'doom-modeline)
 (doom-modeline-mode 1)
 
+(global-set-key (kbd "C-:") #'other-window)
+(global-set-key (kbd "C-;") #'previous-window-any-frame)
+
 (show-paren-mode 1)
 (electric-pair-mode 1)
 

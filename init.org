@@ -66,6 +66,15 @@ Se usa una barra de información alternativa
   (doom-modeline-mode 1)
 #+end_src
 
+Se añaden atajos de teclado convenientes para interactuar mejor con
+las ventanas
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-:") #'other-window)
+  (global-set-key (kbd "C-;") #'previous-window-any-frame)
+#+end_src
+
+
 
 
 * Edición de texto
