@@ -166,7 +166,6 @@ Se activan opciones generales
 
 #+begin_src emacs-lisp
   (setq org-startup-folded t)
-  (setq org-startup-with-inline-images nil)
 #+end_src
 
 Se activan opciones para trabajar mejor con $\LaTeX$
