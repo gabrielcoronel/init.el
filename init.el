@@ -45,6 +45,7 @@
 (evil-set-leader 'motion (kbd "<SPC>"))
 
 (evil-global-set-key 'normal (kbd "gc") #'comment-line)
+(evil-global-set-key 'motion (kbd "M-u") #'universal-argument)
 
 (global-evil-surround-mode 1)
 

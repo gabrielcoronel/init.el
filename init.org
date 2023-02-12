@@ -121,9 +121,11 @@ Se añaden atajos de teclado convenientes
   (evil-set-leader 'motion (kbd "<SPC>"))
 
   (evil-global-set-key 'normal (kbd "gc") #'comment-line)
+  (evil-global-set-key 'motion (kbd "M-u") #'universal-argument)
 #+end_src
 
 Se activa /evil-surround/ para reemplazar a /Electric Pair Mode/
+
 #+begin_src emacs-lisp
   (global-evil-surround-mode 1)
 #+end_src
