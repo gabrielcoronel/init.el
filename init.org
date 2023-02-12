@@ -155,6 +155,12 @@ Se configuran aspectos visuales
   (add-hook 'org-mode-hook #'org-bullets-mode)
 #+end_src
 
+Se activan opciones generales
+
+#+begin_src emacs-lisp
+  (setq org-startup-folded t)
+#+end_src
+
 Se activan opciones para trabajar mejor con $\LaTeX$
 
 #+begin_src emacs-lisp

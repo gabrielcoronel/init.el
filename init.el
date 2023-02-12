@@ -62,6 +62,8 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook #'org-bullets-mode)
 
+(setq org-startup-folded t)
+
 (setq org-highlight-latex-and-related '(latex script entities))
 (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.8))
 (setq org-startup-with-latex-preview t)
