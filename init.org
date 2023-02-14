@@ -182,6 +182,7 @@ Se configura la agenda de Org
         '(("acción" . ?a)
           ("sesión" . ?s)
           ("expotec" . ?x)
+          ("evento" . ?v)
           ("extracurricular" . ?e)))
 #+end_src
 

@@ -74,6 +74,7 @@
       '(("acción" . ?a)
         ("sesión" . ?s)
         ("expotec" . ?x)
+        ("evento" . ?v)
         ("extracurricular" . ?e)))
 
 (setq org-highlight-latex-and-related '(latex script entities))
