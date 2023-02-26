@@ -56,7 +56,7 @@ Se aumenta el tamaño de la fuente
 Se cambia el tema predeterminado
 
 #+begin_src emacs-lisp
-  (load-theme 'doom-one t)
+  (load-theme 'doom-gruvbox t)
 #+end_src
 
 Se usa una barra de información alternativa
@@ -204,14 +204,6 @@ Se activan opciones para trabajar mejor con $\LaTeX$
   (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
 #+end_src
 
-
-** Org Babel
-Se añade configuración para trabajar con Cypher en Org Babel
-
-#+begin_src emacs-lisp
-  (add-to-list 'org-babel-load-languages '(cypher . t))
-  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
-#+end_src
 
 * Programación
 ** Tree-Sitter

@@ -18,7 +18,7 @@
 
 (set-face-attribute 'default nil :height 130)
 
-(load-theme 'doom-one t)
+(load-theme 'doom-gruvbox t)
 
 (require 'doom-modeline)
 (doom-modeline-mode 1)
@@ -87,9 +87,6 @@
 
 (add-hook 'org-mode-hook 'evil-org-mode)
 (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-
-(add-to-list 'org-babel-load-languages '(cypher . t))
-(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 
 (global-tree-sitter-mode 1)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
