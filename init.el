@@ -108,7 +108,6 @@
 (evil-define-key 'normal eglot-mode-map (kbd "gr") #'xref-find-references)
 (evil-define-key 'normal eglot-mode-map (kbd "<leader>n") #'eglot-rename)
 (evil-define-key 'motion eglot-mode-map (kbd "<leader>a") #'eglot-code-actions)
-(evil-define-key 'motion eglot-mode-map (kbd "<leader>b") #'eglot-format-buffer)
 (evil-define-key 'motion eglot-mode-map (kbd "<leader>h") #'display-local-help)
 (evil-define-key 'motion eglot-mode-map (kbd "<leader>l") #'flymake-show-buffer-diagnostics)
 (evil-define-key 'normal eglot-mode-map (kbd "<leader>[") #'flymake-goto-next-error)
